@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Isotic - профессиональный ремонт телефонов. Бесплатная диагностика, гарантия 1 год, оригинальные запчасти.">
+    <title>Isotic - Ремонт телефонов в Ишимбае | Официальный сайт</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Перейти к основному содержанию</a>
+
+    <header class="header" role="banner">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Isotic - главная страница">
+                <img src="images/logo.svg" alt="Isotic - ремонт техники" width="180" height="60">
+            </a>
+            
+            <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="nav" role="navigation" aria-label="Основная навигация">
+                <ul class="nav-list">
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#price-list">Прайс-лист</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-contacts">
+                <a href="tel:+79991234567" class="phone" aria-label="Позвонить нам">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    +7 (999) 123-45-67
+                </a>
+                <span class="work-hours">Ежедневно 9:00–21:00</span>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">Профессиональный ремонт телефонов в Ишимбае</h1>
+                    <p class="hero-subtitle">Бесплатная диагностика • Гарантия 1 год • Оригинальные запчасти</p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="openModal('diagnostic')">
+                            <i class="fas fa-tools"></i> Бесплатная диагностика
+                        </button>
+                        <button class="btn btn-secondary" onclick="openModal('callback')">
+                            <i class="fas fa-phone"></i> Заказать звонок
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="images/hero-phone.png" alt="Ремонт телефонов" loading="lazy">
+                </div>
+            </div>
+        </section>
+        
+        <section id="services" class="services" aria-labelledby="services-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="services-title" class="section-title">Наши услуги</h2>
+                    <p class="section-subtitle">Мы ремонтируем все популярные бренды и модели</p>
+                </header>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Замена дисплея</h3>
+                        <p>Профессиональная замена стекла и дисплея с гарантией</p>
+                        <div class="service-price">от 1500 ₽</div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon"><i class="fas fa-battery-full"></i></div>
+                        <h3>Замена аккумулятора</h3>
+                        <p>Замена изношенного аккумулятора на новый оригинальный</p>
+                        <div class="service-price">от 1200 ₽</div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon"><i class="fas fa-camera"></i></div>
+                        <h3>Ремонт камеры</h3>
+                        <p>Чистка, замена объектива и ремонт модуля камеры</p>
+                        <div class="service-price">от 900 ₽</div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon"><i class="fas fa-tint"></i></div>
+                        <h3>Ремонт после воды</h3>
+                        <p>Чистка и восстановление телефона после попадания жидкости</p>
+                        <div class="service-price">от 2000 ₽</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- PRICE LIST SECTION -->
+         
+        <section id="price-list" class="price-list">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Прайс-лист</h2>
+                    <p class="section-subtitle">Основные виды ремонта и их стоимость</p>
+                </header>
+
+            <div class="price-table-wrapper collapsed" id="priceWrapper">
+            <div class="price-list-expanded">
+
+                <div class="price-category">
+                <h3>📱 Ремонт и обслуживание телефонов</h3>
+
+                <h4>iPhone</h4>
+                <ul>
+                    <li>Замена модуля на iPhone X и выше — <b>2500 ₽ (запчасть) + от 1199 ₽ (работа)</b></li>
+                    <li>Замена аккумулятора до iPhone 6s — <b>1600 ₽</b></li>
+                    <li>Замена аккумулятора до iPhone 10 — <b>2200 ₽</b></li>
+                    <li>Аккумулятор на iPhone 10 и выше — <b>2500 ₽ + от 990 ₽</b></li>
+                </ul>
+
+                <h4>Сенсорные телефоны (Android и др.)</h4>
+                <ul>
+                    <li>Замена модуля (со своей запчастью) — <b>1500 ₽</b></li>
+                    <li>Замена аккумулятора — <b>1800–2000 ₽</b></li>
+                    <li>Замена микрофона — <b>1200–1500 ₽</b></li>
+                    <li>Замена динамика — <b>1200–1500 ₽</b></li>
+                    <li>Разъём Micro-USB — <b>1000 ₽</b></li>
+                    <li>Разъём Type-C — <b>1500 ₽</b></li>
+                    <li>Чистка от вирусов — <b>1000 ₽</b></li>
+                    <li>Чистка памяти — <b>300 ₽</b></li>
+                    <li>Чистка динамиков (без разбора) — <b>300 ₽</b></li>
+                    <li>Чистка от воды — <b>1500–2000 ₽</b></li>
+                    <li>Не ловит сеть (диагностика) — <b>1000–1500 ₽</b></li>
+                </ul>
+
+                <h4>Кнопочные телефоны</h4>
+                <ul>
+                    <li>Разъём зарядки — <b>600 ₽</b></li>
+                    <li>Динамик или микрофон — <b>600 ₽</b></li>
+                </ul>
+                </div>
+
+                <div class="price-category">
+                <h3>💻 Ремонт и обслуживание компьютеров и ноутбуков</h3>
+                <ul>
+                    <li>Настройка ПО / установка Windows — <b>1500 ₽</b></li>
+                    <li>Чистка и замена термопасты — <b>1500 ₽</b></li>
+                    <li>Установка драйверов и программ — <b>500 ₽</b></li>
+                    <li>Установка SSD — <b>300 ₽</b></li>
+                </ul>
+                </div>
+
+                <div class="price-category">
+                <h3>🧰 Прочие услуги</h3>
+                <ul>
+                    <li>Обновление карт (навигатор, антирадар) — <b>1000–1500 ₽</b></li>
+                    <li>Чистка Xbox / Sony PlayStation — <b>2500 ₽</b></li>
+                </ul>
+                </div>
+
+            </div>
+            </div>
+
+                
+
+                <div class="text-center mt-8">
+                    <button class="btn btn-outline" id="showPriceBtn">
+                        <i class="fas fa-list"></i> Показать весь прайс-лист
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="advantages" class="advantages">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Наши преимущества</h2>
+                </header>
+                <div class="advantages-grid">
+                    <div class="advantage-card"><i class="fas fa-bolt"></i><h3>Быстро</h3><p>Ремонт от 30 минут</p></div>
+                    <div class="advantage-card"><i class="fas fa-shield-alt"></i><h3>Надежно</h3><p>Гарантия 1 год</p></div>
+                    <div class="advantage-card"><i class="fas fa-tools"></i><h3>Качественно</h3><p>Оригинальные запчасти</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts" class="contacts">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Контакты</h2>
+                </header>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> г. Ишимбай, ул. Ленина, 25</p>
+                    <p><i class="fas fa-clock"></i> Ежедневно 9:00–21:00</p>
+                    <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
