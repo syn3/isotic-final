@@ -17,6 +17,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// Health check endpoint (ВАЖНО для Railway!)
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    message: 'Server is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // API endpoint
 app.post('/send-telegram', async (req, res) => {
   try {
@@ -69,7 +78,16 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Сервер запущен на порту ${PORT}`);
   console.log(`📁 Статические файлы из: ${path.join(__dirname, 'public')}`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('🔄 Получен SIGTERM, завершаем работу...');
+  server.close(() => {
+    console.log('✅ Сервер остановлен');
+    process.exit(0);
+  });
 });
