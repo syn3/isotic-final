@@ -1,7 +1,6 @@
 {
   "name": "isotic-website",
   "version": "1.0.0",
-  "description": "Сайт ремонта телефонов Isotic",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -14,8 +13,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "keywords": ["ремонт", "телефоны", "сервис"],
-  "author": "Isotic",
-  "license": "ISC"
+  }
 }
