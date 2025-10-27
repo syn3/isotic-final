@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -7,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.static('public')); // для отдачи статических файлов
+app.use(express.static(path.join(__dirname, 'public')));
 
 // CORS middleware
 app.use((req, res, next) => {
@@ -16,12 +17,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// Telegram endpoint
+// API endpoint
 app.post('/send-telegram', async (req, res) => {
   try {
     const { Имя, Телефон, Комментарий } = req.body;
 
-    // Валидация
     if (!Имя || !Телефон) {
       return res.status(400).json({ 
         success: false, 
@@ -29,7 +29,6 @@ app.post('/send-telegram', async (req, res) => {
       });
     }
 
-    // Формируем сообщение
     const message = `
 🎯 Новая заявка с сайта Isotic
 
@@ -39,7 +38,6 @@ app.post('/send-telegram', async (req, res) => {
 🕒 Время: ${new Date().toLocaleString('ru-RU')}
     `.trim();
 
-    // Отправка в Telegram
     const telegramResponse = await axios.post(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
@@ -66,6 +64,12 @@ app.post('/send-telegram', async (req, res) => {
   }
 });
 
+// Serve React app for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Сервер запущен на порту ${PORT}`);
+  console.log(`📁 Статические файлы из: ${path.join(__dirname, 'public')}`);
 });
