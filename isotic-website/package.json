@@ -1,6 +1,8 @@
 {
-  "name": "isotic-backend",
+  "name": "isotic-website",
   "version": "1.0.0",
+  "description": "Сайт ремонта телефонов Isotic",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -10,7 +12,10 @@
     "axios": "^1.6.0",
     "dotenv": "^16.3.0"
   },
-  "devDependencies": {
-    "nodemon": "^3.0.0"
-  }
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["ремонт", "телефоны", "сервис"],
+  "author": "Isotic",
+  "license": "ISC"
 }
