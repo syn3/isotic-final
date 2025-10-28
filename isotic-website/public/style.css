@@ -1173,3 +1173,96 @@ body {
     color: var(--brand-red);
     text-decoration: underline;
 }
+/* ===== FOOTER ===== */
+.footer {
+    background: linear-gradient(135deg, #1e293b 0%, #374151 100%);
+    color: white;
+    padding: var(--space-12) 0 var(--space-6);
+    margin-top: var(--space-16);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.footer-logo img {
+    height: 40px;
+    margin-bottom: var(--space-4);
+}
+
+.footer-logo p {
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.footer-contacts h4,
+.footer-social h4 {
+    color: white;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-lg);
+}
+
+.footer-contacts p {
+    margin-bottom: var(--space-2);
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.footer-contacts a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+.footer-contacts a:hover {
+    color: var(--brand-red);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-base);
+    transition: var(--transition-base);
+    background: rgba(255,255,255,0.05);
+}
+
+.social-link:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transform: translateX(4px);
+}
+
+.footer-bottom {
+    border-top: 1px solid #475569;
+    padding-top: var(--space-6);
+    text-align: center;
+    color: #94a3b8;
+}
+
+/* Адаптивность подвала */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+        text-align: center;
+    }
+    
+    .footer-contacts p {
+        justify-content: center;
+    }
+}
