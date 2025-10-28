@@ -823,7 +823,7 @@ body {
 }
 
 .price-table-wrapper.expanded {
-    max-height: 800px; /* достаточно для видимости всей таблицы */
+    max-height: 1500px; /* достаточно для видимости всей таблицы */
     opacity: 1;
 }
 
@@ -1032,3 +1032,4 @@ body {
   color: #b91c1c;
   font-weight: 600;
 }
+
