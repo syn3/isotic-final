@@ -1090,3 +1090,86 @@ body {
 .price-table-wrapper.expanded {
     max-height: 5000px;
 }
+
+/* Улучшенные стили для контактов */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-8);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: var(--transition-bounce);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--brand-red);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--brand-red), var(--brand-red-600));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-6);
+    transition: var(--transition-smooth);
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.contact-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Стили для кнопки ВК */
+.btn-vk {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #4a76a8;
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    text-align: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(79, 118, 168, 0.3);
+}
+
+.btn-vk:hover {
+    background: #3d638f;
+    transform: translateY(-2px);
+    color: white;
+    box-shadow: 0 6px 12px rgba(79, 118, 168, 0.4);
+}
+
+/* Кликабельный адрес */
+.address-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition-base);
+    font-weight: 500;
+}
+
+.address-link:hover {
+    color: var(--brand-red);
+    text-decoration: underline;
+}
