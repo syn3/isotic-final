@@ -59,6 +59,7 @@
     /* Transitions */
     --transition-base: all 0.2s ease-in-out;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* ===== RESET AND BASE STYLES ===== */
@@ -138,7 +139,6 @@ body {
     backdrop-filter: blur(8px);
 }
 
-/* header container */
 .header .container {
     display: flex;
     align-items: center;
@@ -280,11 +280,13 @@ body {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: var(--space-4);
+    text-align: center;
 }
 
 @media (min-width: 768px) {
     .hero-title {
         font-size: var(--font-size-4xl);
+        text-align: left;
     }
 }
 
@@ -292,6 +294,13 @@ body {
     font-size: var(--font-size-lg);
     margin-bottom: var(--space-6);
     opacity: 0.95;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .hero-subtitle {
+        text-align: left;
+    }
 }
 
 .hero-features {
@@ -316,11 +325,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+    align-items: center;
 }
 
 @media (min-width: 480px) {
     .hero-actions {
         flex-direction: row;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-actions {
+        justify-content: flex-start;
     }
 }
 
@@ -328,12 +345,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    order: -1;
+}
+
+@media (min-width: 1024px) {
+    .hero-visual {
+        order: 1;
+    }
 }
 
 .hero-visual img {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.12));
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+    border-radius: var(--radius-lg);
+    transition: var(--transition-smooth);
+}
+
+.hero-visual img:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(0 25px 50px rgba(0,0,0,0.2));
 }
 
 /* ===== BUTTONS ===== */
@@ -353,6 +384,7 @@ body {
     transition: var(--transition-smooth);
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
 .btn:focus {
@@ -402,6 +434,7 @@ body {
 .section-header {
     text-align: center;
     margin-bottom: var(--space-12);
+    width: 100%;
 }
 
 .section-title {
@@ -418,15 +451,25 @@ body {
     margin: 0 auto;
 }
 
+/* ===== SERVICES SECTION ===== */
 .services {
     padding: var(--space-16) 0;
     background: var(--bg-gray);
 }
 
+.services .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-6);
+    width: 100%;
+    max-width: 1200px;
 }
 
 .service-card {
@@ -437,11 +480,18 @@ body {
     text-align: center;
     transition: var(--transition-smooth);
     border: 1px solid var(--border-color);
+    flex: 0 1 300px;
+    min-width: 280px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .service-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
+    border-color: var(--brand-red);
 }
 
 .service-icon {
@@ -470,6 +520,7 @@ body {
 .service-card p {
     color: var(--text-secondary);
     margin-bottom: var(--space-4);
+    flex-grow: 1;
 }
 
 .service-price {
@@ -478,22 +529,167 @@ body {
     color: var(--primary-color);
     margin-bottom: var(--space-4);
 }
-/* ===== PRICE LIST (UPDATED) ===== */
+
+/* Service categories */
+.service-category {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #b91c1c;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Hidden services */
+.hidden-service {
+    display: none !important;
+}
+
+/* Show more button */
+.services-more {
+    text-align: center;
+    margin-top: var(--space-8);
+    width: 100%;
+}
+
+.services-more .btn {
+    transition: var(--transition-smooth);
+}
+
+.services-more .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== ADVANTAGES SECTION ===== */
+.advantages {
+    padding: var(--space-16) 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+}
+
+.advantages::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand-red), var(--accent-color));
+}
+
+.advantages-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-8);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.advantage-card {
+    background: var(--bg-white);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-bounce);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    flex: 0 1 300px;
+    min-width: 280px;
+    max-width: 320px;
+}
+
+.advantage-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand-red), var(--brand-red-600));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.advantage-card:hover::before {
+    transform: scaleX(1);
+}
+
+.advantage-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.advantage-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--brand-red), var(--brand-red-600));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-6);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.advantage-card:hover .advantage-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.advantage-icon i {
+    font-size: var(--font-size-2xl);
+    color: white;
+}
+
+.advantage-card h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.advantage-card p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+}
+
+/* ===== PRICE LIST ===== */
 .price-list {
     padding: var(--space-16) 0;
     background: var(--bg-white);
 }
 
+.price-table-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease, opacity 0.6s ease;
+    opacity: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.price-table-wrapper.expanded {
+    max-height: 1500px;
+    opacity: 1;
+}
+
 .price-table {
     width: 100%;
+    max-width: 800px;
     border-collapse: collapse;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    margin-top: var(--space-8);
+    margin: var(--space-8) auto 0;
 }
 
-/* Заголовки таблицы */
 .price-table thead th {
     background: linear-gradient(90deg, var(--brand-red), var(--brand-red-600));
     color: #fff;
@@ -504,7 +700,6 @@ body {
     letter-spacing: 0.3px;
 }
 
-/* Ячейки */
 .price-table th,
 .price-table td {
     padding: 1rem 1.25rem;
@@ -512,7 +707,6 @@ body {
     transition: background 0.2s ease;
 }
 
-/* Полосатая таблица */
 .price-table tbody tr:nth-child(odd) {
     background: var(--bg-gray);
 }
@@ -521,12 +715,10 @@ body {
     background: #fff;
 }
 
-/* Эффект при наведении */
 .price-table tbody tr:hover {
     background: rgba(185, 28, 28, 0.05);
 }
 
-/* Выравнивание и акценты */
 .price-table td:nth-child(1) {
     font-weight: 500;
     color: var(--text-primary);
@@ -543,7 +735,30 @@ body {
     text-align: right;
 }
 
-/* Адаптация под мобильные */
+/* Table animations */
+.price-table tbody tr {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s ease;
+}
+
+.price-table.expanded tbody tr {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.price-table tbody tr:nth-child(1) { transition-delay: 0.1s; }
+.price-table tbody tr:nth-child(2) { transition-delay: 0.2s; }
+.price-table tbody tr:nth-child(3) { transition-delay: 0.3s; }
+.price-table tbody tr:nth-child(4) { transition-delay: 0.4s; }
+
+#showPriceBtn.active {
+    background: var(--brand-red);
+    color: #fff;
+    border-color: var(--brand-red);
+}
+
+/* Mobile table styles */
 @media (max-width: 640px) {
     .price-table thead {
         display: none;
@@ -577,6 +792,108 @@ body {
     }
 }
 
+/* ===== CONTACTS SECTION ===== */
+.contacts {
+    padding: var(--space-16) 0;
+    background: var(--bg-gray);
+}
+
+.contacts .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-8);
+    width: 100%;
+    max-width: 1200px;
+}
+
+.contact-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: var(--transition-bounce);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    flex: 0 1 300px;
+    min-width: 280px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--brand-red);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--brand-red), var(--brand-red-600));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-6);
+    transition: var(--transition-smooth);
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.contact-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* VK Button */
+.btn-vk {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #4a76a8;
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    text-align: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(79, 118, 168, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-vk:hover {
+    background: #3d638f;
+    transform: translateY(-2px);
+    color: white;
+    box-shadow: 0 6px 12px rgba(79, 118, 168, 0.4);
+}
+
+/* Address link */
+.address-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition-base);
+    font-weight: 500;
+}
+
+.address-link:hover {
+    color: var(--brand-red);
+    text-decoration: underline;
+}
 
 /* ===== MODALS ===== */
 .modal {
@@ -585,61 +902,60 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2000;
-    display: none;
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
     padding: var(--space-4);
 }
 
-.modal[aria-hidden="false"] {
-    display: flex;
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.modal-backdrop {
+.modal-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
     backdrop-filter: blur(4px);
 }
 
 .modal-content {
-    background: var(--bg-white);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8);
     position: relative;
-    z-index: 1;
-    width: 100%;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
     max-width: 480px;
+    width: 90%;
+    z-index: 10;
+    animation: fadeInUp 0.4s ease;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: var(--shadow-lg);
-    animation: modalSlideIn 0.3s ease-out;
 }
 
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+.modal-content h3 {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--brand-red);
 }
 
 .modal-close {
     position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
+    top: 0.5rem;
+    right: 0.5rem;
     background: none;
     border: none;
-    font-size: var(--font-size-xl);
-    color: var(--text-muted);
     cursor: pointer;
+    font-size: 1.25rem;
+    color: #666;
     padding: var(--space-1);
     border-radius: var(--radius-sm);
     transition: var(--transition-base);
@@ -648,11 +964,6 @@ body {
 .modal-close:hover {
     color: var(--text-primary);
     background: var(--bg-gray-dark);
-}
-
-.modal h2 {
-    margin-bottom: var(--space-6);
-    text-align: center;
 }
 
 /* ===== FORMS ===== */
@@ -699,7 +1010,7 @@ body {
     margin-top: var(--space-4);
 }
 
-/* Notification styles */
+/* ===== NOTIFICATIONS ===== */
 .notification {
     position: fixed;
     top: 90px;
@@ -747,432 +1058,6 @@ body {
     }
 }
 
-/* Скрытые услуги */
-.hidden-service {
-    display: none !important;
-}
-
-/* Кнопка "Показать еще" */
-.services-more {
-    text-align: center;
-    margin-top: var(--space-8);
-}
-
-.services-more .btn {
-    transition: var(--transition-smooth);
-}
-
-.services-more .btn:hover {
-    transform: translateY(-2px);
-}
-
-/* Анимация появления */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.service-card.show {
-    animation: fadeInUp 0.5s ease-out;
-}
-
-/* ===== UTILITY CLASSES ===== */
-.text-center { text-align: center; }
-.mb-4 { margin-bottom: var(--space-4); }
-.mt-8 { margin-top: var(--space-8); }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: var(--font-size-2xl);
-    }
-    
-    .section-title {
-        font-size: var(--font-size-2xl);
-    }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .header .container {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .header-contacts {
-        display: none;
-    }
-
-    .price-table th, .price-table td {
-        padding: 12px;
-    }
-}
-/* ===== PRICE LIST ANIMATION ===== */
-.price-table-wrapper {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.8s ease, opacity 0.6s ease;
-    opacity: 0;
-}
-
-.price-table-wrapper.expanded {
-    max-height: 1500px; /* достаточно для видимости всей таблицы */
-    opacity: 1;
-}
-
-/* Анимация появления строк */
-.price-table tbody tr {
-    opacity: 0;
-    transform: translateY(15px);
-    transition: all 0.4s ease;
-}
-
-.price-table.expanded tbody tr {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.price-table tbody tr:nth-child(1) { transition-delay: 0.1s; }
-.price-table tbody tr:nth-child(2) { transition-delay: 0.2s; }
-.price-table tbody tr:nth-child(3) { transition-delay: 0.3s; }
-.price-table tbody tr:nth-child(4) { transition-delay: 0.4s; }
-
-#showPriceBtn.active {
-    background: var(--brand-red);
-    color: #fff;
-    border-color: var(--brand-red);
-}
-/* ===== MODAL ===== */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.modal.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    top: 0;
-    left: 0;
-}
-
-.modal-content {
-    position: relative;
-    background: #fff;
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 90%;
-    z-index: 10;
-    animation: fadeInUp 0.4s ease;
-}
-
-.modal-content h3 {
-    margin-bottom: 1rem;
-    text-align: center;
-    color: var(--brand-red);
-}
-
-.modal-content form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.modal-content input,
-.modal-content textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: var(--radius-base);
-    font-size: 1rem;
-}
-
-.modal-content button {
-    margin-top: 0.5rem;
-}
-
-.modal-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.25rem;
-    color: #666;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* ===== SERVICE CARDS (UPDATED) ===== */
-.service-category {
-    margin-top: 2rem;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #b91c1c;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-.service-card {
-    background: #fff;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
-.service-icon {
-    font-size: 2rem;
-    color: var(--brand-red);
-    margin-bottom: 0.75rem;
-}
-
-.service-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.service-card ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.service-card ul li {
-    margin: 0.4rem 0;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: var(--text-primary);
-}
-
-.service-card b {
-    color: #b91c1c;
-}
-/* ====== EXPANDED PRICE LIST ====== */
-.price-list-expanded {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem 2rem;
-  line-height: 1.6;
-  color: var(--text-primary);
-}
-
-.price-list-expanded h3 {
-  color: #b91c1c;
-  margin-top: 1rem;
-  font-size: 1.3rem;
-}
-
-.price-list-expanded h4 {
-  margin-top: 0.75rem;
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-}
-
-.price-list-expanded ul {
-  list-style: none;
-  margin: 0.5rem 0 1rem 0;
-  padding-left: 1rem;
-  border-left: 3px solid #b91c1c22;
-}
-
-.price-list-expanded ul li {
-  margin: 0.4rem 0;
-  font-size: 0.95rem;
-  padding-left: 0.25rem;
-}
-
-.price-list-expanded ul li b {
-  color: #b91c1c;
-  font-weight: 600;
-}
-
-/* Стили для кнопки ВК */
-.btn-vk {
-    display: inline-block;
-    background: #4a76a8;
-    color: white;
-    padding: 10px 20px;
-    border-radius: var(--radius-base);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition-smooth);
-}
-
-.btn-vk:hover {
-    background: #3d638f;
-    transform: translateY(-2px);
-    color: white;
-}
-
-/* Стили для кнопки ВК */
-.btn-vk {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #4a76a8;
-    color: white;
-    padding: 12px 20px;
-    border-radius: var(--radius-base);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition-smooth);
-    text-align: center;
-    justify-content: center;
-}
-
-.btn-vk:hover {
-    background: #3d638f;
-    transform: translateY(-2px);
-    color: white;
-    box-shadow: var(--shadow-md);
-}
-
-/* Стили для кликабельного адреса */
-.address-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: var(--transition-base);
-}
-
-.address-link:hover {
-    color: var(--brand-red);
-    text-decoration: underline;
-}
-
-/* Расширение прайс-листа */
-.price-table-wrapper.expanded {
-    max-height: 5000px;
-}
-
-/* Улучшенные стили для контактов */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-8);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.contact-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    padding: var(--space-8);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    transition: var(--transition-bounce);
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.contact-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    border-color: var(--brand-red);
-}
-
-.contact-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--brand-red), var(--brand-red-600));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--space-6);
-    transition: var(--transition-smooth);
-}
-
-.contact-card:hover .contact-icon {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.contact-icon i {
-    font-size: 1.5rem;
-    color: white;
-}
-
-/* Стили для кнопки ВК */
-.btn-vk {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #4a76a8;
-    color: white;
-    padding: 12px 24px;
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition-smooth);
-    text-align: center;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(79, 118, 168, 0.3);
-}
-
-.btn-vk:hover {
-    background: #3d638f;
-    transform: translateY(-2px);
-    color: white;
-    box-shadow: 0 6px 12px rgba(79, 118, 168, 0.4);
-}
-
-/* Кликабельный адрес */
-.address-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: var(--transition-base);
-    font-weight: 500;
-}
-
-.address-link:hover {
-    color: var(--brand-red);
-    text-decoration: underline;
-}
 /* ===== FOOTER ===== */
 .footer {
     background: linear-gradient(135deg, #1e293b 0%, #374151 100%);
@@ -1254,121 +1139,31 @@ body {
     color: #94a3b8;
 }
 
-/* Адаптивность подвала */
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-        text-align: center;
-    }
-    
-    .footer-contacts p {
-        justify-content: center;
-    }
-}
-/* ===== ADVANTAGES SECTION ===== */
-.advantages {
-    padding: var(--space-16) 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    position: relative;
-}
-
-.advantages::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--brand-red), var(--accent-color));
-}
-
-.advantages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-8);
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.advantage-card {
-    background: var(--bg-white);
-    padding: var(--space-8);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-bounce);
-    border: 1px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
-}
-
-.advantage-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--brand-red), var(--brand-red-600));
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.advantage-card:hover::before {
-    transform: scaleX(1);
-}
-
-.advantage-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-}
-
-.advantage-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--brand-red), var(--brand-red-600));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--space-6);
-    transition: var(--transition-smooth);
-    position: relative;
-}
-
-.advantage-card:hover .advantage-icon {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.advantage-icon i {
-    font-size: var(--font-size-2xl);
-    color: white;
-}
-
-.advantage-card h3 {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: var(--space-3);
-}
-
-.advantage-card p {
-    color: var(--text-secondary);
-    font-size: var(--font-size-base);
-    line-height: 1.6;
-}
-
-/* Анимация появления преимуществ */
+/* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.service-card.show {
+    animation: fadeInUp 0.5s ease-out;
 }
 
 .advantage-card {
@@ -1379,8 +1174,40 @@ body {
 .advantage-card:nth-child(2) { animation-delay: 0.2s; }
 .advantage-card:nth-child(3) { animation-delay: 0.3s; }
 
-/* Адаптивность */
+/* ===== UTILITY CLASSES ===== */
+.text-center { text-align: center; }
+.mb-4 { margin-bottom: var(--space-4); }
+.mt-8 { margin-top: var(--space-8); }
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    .hero-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .header .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .header-contacts {
+        display: none;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+        text-align: center;
+    }
+    
+    .footer-contacts p {
+        justify-content: center;
+    }
+
     .advantages-grid {
         grid-template-columns: 1fr;
         gap: var(--space-6);
@@ -1395,149 +1222,38 @@ body {
         height: 70px;
         margin-bottom: var(--space-4);
     }
-}
-.hero-visual img {
-    max-width: 100%;
-    height: auto;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
-    border-radius: var(--radius-lg);
-    transition: var(--transition-smooth);
-}
 
-.hero-visual img:hover {
-    transform: scale(1.02);
-    filter: drop-shadow(0 25px 50px rgba(0,0,0,0.2));
-}
-
-/* ===== SERVICES SECTION ===== */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-6);
-    justify-items: center; /* Центрируем карточки внутри grid ячеек */
-}
-
-/* Для больших экранов - центрируем весь grid */
-@media (min-width: 1200px) {
-    .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 320px));
-        justify-content: center; /* Центрируем весь grid контейнер */
+    /* Mobile cards full width */
+    .service-card,
+    .contact-card,
+    .advantage-card {
+        flex: 1 1 100%;
+        max-width: 400px;
     }
 }
 
-.service-card {
-    background: var(--bg-white);
-    padding: var(--space-8);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-base);
-    text-align: center;
-    transition: var(--transition-bounce);
-    border: 1px solid var(--border-color);
-    width: 100%;
-    max-width: 320px; /* Ограничиваем максимальную ширину */
-}
-
-/* ===== CONTACTS SECTION ===== */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-8);
-    justify-items: center; /* Центрируем карточки внутри grid ячеек */
-}
-
-/* Для больших экранов - центрируем весь grid */
-@media (min-width: 1200px) {
-    .contact-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
-        justify-content: center; /* Центрируем весь grid контейнер */
-    }
-}
-
-.contact-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    padding: var(--space-8);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    transition: var(--transition-bounce);
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 300px; /* Ограничиваем максимальную ширину */
-}
-
-/* Альтернативный вариант с Flexbox (если предпочтительнее) */
-/* Раскомментируйте, если хотите использовать flexbox вместо grid */
-
-/*
-.services-grid,
-.contact-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Всегда центрируем карточки */
-    gap: var(--space-6);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.service-card,
-.contact-card {
-    flex: 0 1 280px; /* Карточки могут сжиматься, но не растягиваются */
-    min-width: 280px;
-    max-width: 320px;
-}
-*/
-
-/* Убедимся, что контейнеры секций тоже центрируются */
-.services .container,
-.contacts .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Адаптивность для мобильных */
-@media (max-width: 768px) {
+/* Medium screens */
+@media (min-width: 769px) and (max-width: 1199px) {
     .services-grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
-        justify-items: stretch; /* На мобильных растягиваем на всю ширину */
+    .contact-grid,
+    .advantages-grid {
+        justify-content: center;
     }
     
     .service-card,
-    .contact-card {
-        max-width: none; /* Убираем ограничение на мобильных */
+    .contact-card,
+    .advantage-card {
+        flex: 0 1 calc(50% - var(--space-6));
+        max-width: 350px;
     }
 }
 
-/* Для средних экранов (планшеты) */
-@media (min-width: 769px) and (max-width: 1199px) {
-    .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        justify-content: center;
-    }
-    
-    .contact-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        justify-content: center;
-    }
-}
-/* Центрирование заголовков секций */
-.section-header {
-    text-align: center;
-    margin-bottom: var(--space-12);
-    width: 100%;
-}
-
-/* Обеспечиваем, что контейнеры занимают всю доступную ширину */
+/* Ensure everything is properly centered */
 .services .container,
-.contacts .container {
-    width: 100%;
-}
-
-/* Улучшаем внешний вид карточек при центрировании */
-.service-card:hover,
-.contact-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--brand-red);
+.contacts .container,
+.advantages .container,
+.price-list .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
