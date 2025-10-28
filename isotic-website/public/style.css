@@ -1033,3 +1033,20 @@ body {
   font-weight: 600;
 }
 
+/* Стили для кнопки ВК */
+.btn-vk {
+    display: inline-block;
+    background: #4a76a8;
+    color: white;
+    padding: 10px 20px;
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.btn-vk:hover {
+    background: #3d638f;
+    transform: translateY(-2px);
+    color: white;
+}
