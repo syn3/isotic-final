@@ -1050,3 +1050,43 @@ body {
     transform: translateY(-2px);
     color: white;
 }
+
+/* Стили для кнопки ВК */
+.btn-vk {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #4a76a8;
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    text-align: center;
+    justify-content: center;
+}
+
+.btn-vk:hover {
+    background: #3d638f;
+    transform: translateY(-2px);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+/* Стили для кликабельного адреса */
+.address-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+.address-link:hover {
+    color: var(--brand-red);
+    text-decoration: underline;
+}
+
+/* Расширение прайс-листа */
+.price-table-wrapper.expanded {
+    max-height: 5000px;
+}
